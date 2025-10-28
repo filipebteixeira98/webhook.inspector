@@ -9,6 +9,10 @@ import { fastifySwagger } from '@fastify/swagger'
 import { fastifyCors } from '@fastify/cors'
 import ScalarApiReference from '@scalar/fastify-api-reference'
 
+import { env } from '@/env'
+
+import { listWebhooks } from '@/routes/list-webhooks'
+
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
 app.setSerializerCompiler(serializerCompiler)
@@ -18,7 +22,7 @@ app.setValidatorCompiler(validatorCompiler)
 app.register(fastifyCors, {
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: true,
+  // credentials: true,
 })
 
 app.register(fastifySwagger, {
@@ -36,7 +40,9 @@ app.register(ScalarApiReference, {
   routePrefix: '/docs',
 })
 
-app.listen({ port: 3000, host: '0.0.0.0' }, () => {
+app.register(listWebhooks)
+
+app.listen({ port: env.PORT, host: '0.0.0.0' }, () => {
   console.log('🔥 Server is running on http://localhost:3000/')
   console.log('🔥 Documentation available at http://localhost:3000/docs')
 })
