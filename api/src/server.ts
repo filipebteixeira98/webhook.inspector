@@ -44,5 +44,5 @@ app.register(listWebhooks)
 
 app.listen({ port: env.PORT, host: '0.0.0.0' }, () => {
   console.log('🔥 Server is running on http://localhost:3000/')
-  console.log('🔥 Documentation available at http://localhost:3000/docs')
+  console.log('📚 Documentation available at http://localhost:3000/docs')
 })
