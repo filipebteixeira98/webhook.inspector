@@ -1,0 +1,45 @@
+# --- System Files ---
+.DS_Store
+Thumbs.db
+*.log
+
+# --- Package Manager (pnpm) ---
+# We ignore the modules but KEEP the lockfile
+node_modules/
+.pnpm-debug.log*
+
+# --- Environment / Secrets ---
+# NEVER commit these; they contain API keys and database strings
+.env
+.env.local
+.env.*.local
+*.pem
+
+# --- TypeScript / Build Outputs ---
+# Ignore the compiled code, as it's generated from source
+dist/
+build/
+.next/
+.out/
+*.tsbuildinfo
+
+# --- Vite / Frontend Specific (web/) ---
+# Vite specific cache and preview files
+.vite/
+stats.html
+
+# --- Backend Specific (api/) ---
+# If you use Prisma, ignore the SQLite DB or generated files
+/api/prisma/*.db
+/api/prisma/generated-client
+
+# --- IDEs / Editors ---
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# --- Testing ---
+/coverage/
+.nyc_output
